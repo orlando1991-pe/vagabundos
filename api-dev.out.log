@@ -1,0 +1,12 @@
+
+> vagabundos-commerce@0.1.0 dev:api
+> npm run dev --workspace apps/api
+
+
+> @vagabundos/api@0.1.0 dev
+> node --watch src/server.js
+
+Vagabundos API listening on http://localhost:4000
+[0mGET /health [32m200[0m 8.884 ms - 38[0m
+Restarting 'src/server.js'
+Vagabundos API listening on http://localhost:4000

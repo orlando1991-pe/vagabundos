@@ -1,0 +1,19 @@
+{
+  "name": "vagabundos-commerce",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "apps/web",
+    "apps/api"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace apps/web",
+    "dev:web": "npm run dev --workspace apps/web",
+    "dev:api": "npm run dev --workspace apps/api",
+    "build": "npm run build --workspace apps/web",
+    "start:api": "npm run start --workspace apps/api"
+  },
+  "devDependencies": {
+    "postcss-selector-parser": "^6.1.2"
+  }
+}

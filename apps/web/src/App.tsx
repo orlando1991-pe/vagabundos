@@ -141,7 +141,7 @@ function About() {
           <div>
             <p className="font-body text-sm font-black uppercase tracking-[0.28em] text-amber">Nosotros</p>
             <h2 className="mt-3 font-display text-5xl uppercase leading-none text-stout md:text-7xl">
-              La parada perfecta antes de seguir camino.
+              La parada perfecta antes de seguir camino. 
             </h2>
           </div>
           <p className="font-body text-lg leading-8 text-ink/70">

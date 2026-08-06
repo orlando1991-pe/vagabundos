@@ -1,29 +1,47 @@
 export const beers = [
   {
-    id: "ruta-ipa",
-    name: "Ruta IPA",
-    style: "India Pale Ale",
-    abv: 6.4,
-    price: 4.8,
-    stock: 120,
+    id: "tulum",
+    name: "Tulum",
+    style: "IPA",
+    abv: 6.8,
+    ibu: 50,
+    price: 10,
     active: true
   },
   {
-    id: "fogata-amber",
-    name: "Fogata Amber",
-    style: "Amber Ale",
-    abv: 5.6,
-    price: 4.5,
-    stock: 96,
+    id: "lifa",
+    name: "Lifa",
+    style: "American Pale Ale",
+    abv: 5.3,
+    ibu: 35,
+    price: 9.5,
     active: true
   },
   {
-    id: "noche-stout",
-    name: "Noche Stout",
-    style: "Dry Stout",
-    abv: 5.1,
-    price: 4.6,
-    stock: 42,
+    id: "bien-vienna",
+    name: "Bien Vienna!",
+    style: "Vienna Lager",
+    abv: 5.5,
+    ibu: 25,
+    price: 9,
+    active: true
+  },
+  {
+    id: "arigato",
+    name: "Arigato",
+    style: "Japanese Lager",
+    abv: 5,
+    ibu: 15,
+    price: 9,
+    active: true
+  },
+  {
+    id: "pils-plis",
+    name: "Pils Plis",
+    style: "German Pils",
+    abv: 5.2,
+    ibu: 31,
+    price: 9,
     active: true
   }
 ];

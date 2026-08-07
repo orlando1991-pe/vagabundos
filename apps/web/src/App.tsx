@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ArrowRight, Instagram, Mail, Menu, MessageCircle, Package, Phone, X } from "lucide-react";
+import { ArrowRight, Cookie, Instagram, Mail, Menu, MessageCircle, Package, Phone, X } from "lucide-react";
 import { beers, navItems, services, strengths } from "./data";
 
 const instagramUrl = "https://www.instagram.com/cerveceria.vagabundos/";
@@ -9,6 +9,49 @@ const priceFormatter = new Intl.NumberFormat("es-PE", { minimumFractionDigits: 2
 
 function goTo(href: string) {
   document.querySelector(href)?.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+type CookieChoice = "accepted" | "necessary";
+
+function CookieConsent() {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const savedChoice = window.localStorage.getItem("vagabundos-cookie-consent");
+    setVisible(!savedChoice);
+  }, []);
+
+  useEffect(() => {
+    if (!visible) return;
+    const closeWithNecessary = (event: KeyboardEvent) => {
+      if (event.key === "Escape") saveChoice("necessary");
+    };
+    window.addEventListener("keydown", closeWithNecessary);
+    return () => window.removeEventListener("keydown", closeWithNecessary);
+  }, [visible]);
+
+  function saveChoice(choice: CookieChoice) {
+    window.localStorage.setItem("vagabundos-cookie-consent", choice);
+    window.dispatchEvent(new CustomEvent("cookie-consent-change", { detail: choice }));
+    setVisible(false);
+  }
+
+  if (!visible) return null;
+
+  return <div className="cookie-overlay">
+    <section className="cookie-modal" role="dialog" aria-modal="true" aria-labelledby="cookie-title" aria-describedby="cookie-description">
+      <div className="cookie-icon" aria-hidden="true"><Cookie /></div>
+      <div className="cookie-copy">
+        <p className="cookie-kicker">Tu privacidad importa</p>
+        <h2 id="cookie-title">Usamos cookies</h2>
+        <p id="cookie-description">Utilizamos cookies necesarias para el funcionamiento del sitio y, con tu permiso, cookies opcionales para conocer cómo se utiliza y mejorar tu experiencia.</p>
+      </div>
+      <div className="cookie-actions">
+        <button className="cookie-secondary" onClick={() => saveChoice("necessary")}>Solo necesarias</button>
+        <button className="cookie-primary" onClick={() => saveChoice("accepted")} autoFocus>Aceptar todas</button>
+      </div>
+    </section>
+  </div>;
 }
 
 function Header() {
@@ -119,5 +162,5 @@ function Contact() {
 }
 
 export default function App() {
-  return <main><Header/><Hero/><About/><Beers/><Services/><Contact/><footer><div className="container footer-inner"><img src="/assets/logos pngs-VAGABUNDOS-04.png" alt="Cervecería Vagabundos"/><p>© {new Date().getFullYear()} Cervecería Vagabundos</p><p>Consume con responsabilidad. Solo para mayores de 18 años.</p></div></footer></main>;
+  return <main><Header/><Hero/><About/><Beers/><Services/><Contact/><footer><div className="container footer-inner"><img src="/assets/logos pngs-VAGABUNDOS-04.png" alt="Cervecería Vagabundos"/><p>© {new Date().getFullYear()} Cervecería Vagabundos</p><p>Consume con responsabilidad. Solo para mayores de 18 años.</p></div></footer><CookieConsent/></main>;
 }

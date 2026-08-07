@@ -91,6 +91,19 @@ footer { padding:30px 0; background:#170f0b; }
 .footer-inner { display:flex; align-items:center; justify-content:space-between; gap:28px; }
 .footer-inner img { width:200px; }
 .footer-inner p { margin:0; color:rgba(255,245,223,.55); font-size:11px; text-align:center; }
+.cookie-overlay { position:fixed; inset:0; z-index:100; display:flex; align-items:flex-end; justify-content:center; padding:24px; background:rgba(10,7,5,.62); backdrop-filter:blur(4px); }
+.cookie-modal { width:min(100%,760px); display:grid; grid-template-columns:auto 1fr; gap:20px; padding:26px; border:1px solid rgba(243,180,73,.28); border-radius:18px; background:#fff5df; color:#170f0b; box-shadow:0 28px 90px rgba(0,0,0,.55); }
+.cookie-icon { display:grid; place-items:center; width:50px; height:50px; border-radius:50%; background:#170f0b; color:#f3b449; }
+.cookie-icon svg { width:25px; height:25px; }
+.cookie-kicker { margin:0 0 6px; color:#b94f1d; font-size:11px; font-weight:900; letter-spacing:.16em; text-transform:uppercase; }
+.cookie-copy h2 { font-size:38px; }
+.cookie-copy>p:last-child { margin:9px 0 0; color:rgba(16,16,20,.7); font-size:14px; line-height:1.6; }
+.cookie-actions { grid-column:1/-1; display:flex; justify-content:flex-end; gap:10px; }
+.cookie-actions button { min-height:46px; border-radius:999px; padding:12px 19px; font-size:12px; font-weight:900; text-transform:uppercase; cursor:pointer; }
+.cookie-secondary { border:1px solid rgba(23,15,11,.2); background:transparent; color:#170f0b; }
+.cookie-primary { border:1px solid #170f0b; background:#170f0b; color:#fff5df; }
+.cookie-actions button:hover { transform:translateY(-1px); }
+.cookie-actions button:focus-visible { outline:3px solid #f3b449; outline-offset:3px; }
 
 @media (max-width:900px) {
   .desktop-nav,.header-cta { display:none; }
@@ -123,6 +136,12 @@ footer { padding:30px 0; background:#170f0b; }
   .pricing-note { flex-direction:column; }
   .contact-grid { gap:36px; }
   .footer-inner { flex-direction:column; }
+  .cookie-overlay { padding:12px; }
+  .cookie-modal { grid-template-columns:1fr; gap:14px; padding:21px; border-radius:15px; }
+  .cookie-icon { width:44px; height:44px; }
+  .cookie-copy h2 { font-size:34px; }
+  .cookie-actions { grid-column:auto; display:grid; }
+  .cookie-actions button { width:100%; }
 }
 @media (max-width:380px) {
   .logo-button img { width:150px; }

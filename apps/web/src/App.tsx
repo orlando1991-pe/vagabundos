@@ -13,6 +13,52 @@ function goTo(href: string) {
 
 type CookieChoice = "accepted" | "necessary";
 
+type AgeGateState = "question" | "leaving" | "denied";
+
+function hasVerifiedAge() {
+  return document.cookie.split("; ").some(cookie => cookie.startsWith("vagabundos-age-verified=true"));
+}
+
+function AgeGate({ onVerified }: { onVerified: () => void }) {
+  const [state, setState] = useState<AgeGateState>("question");
+
+  function acceptAge() {
+    const maxAge = 60 * 60 * 24 * 365;
+    const secure = window.location.protocol === "https:" ? "; Secure" : "";
+    document.cookie = `vagabundos-age-verified=true; Max-Age=${maxAge}; Path=/; SameSite=Lax${secure}`;
+    setState("leaving");
+    window.setTimeout(onVerified, 500);
+  }
+
+  if (state === "denied") {
+    return <main className="age-gate age-gate-denied" aria-live="polite">
+      <div className="age-gate-background" aria-hidden="true" />
+      <section className="age-denied-card">
+        <img src="/assets/logos pngs-VAGABUNDOS-04.png" alt="Cervecería Vagabundos" />
+        <p className="age-kicker">Gracias por tu sinceridad</p>
+        <h1>Te esperamos. Vuelve pronto.</h1>
+        <p>Recuerda que necesitas tener al menos 18 años para entrar en el sitio de Cervecería Vagabundos.</p>
+      </section>
+    </main>;
+  }
+
+  return <main className={`age-gate ${state === "leaving" ? "age-gate-leaving" : ""}`}>
+    <div className="age-gate-background" aria-hidden="true" />
+    <section className="age-card" role="dialog" aria-modal="true" aria-labelledby="age-title" aria-describedby="age-description">
+      <img className="age-logo" src="/assets/logos pngs-VAGABUNDOS-04.png" alt="Cervecería Vagabundos" />
+      <div className="age-mark" aria-hidden="true">18<span>+</span></div>
+      <p className="age-kicker">Acceso exclusivo para adultos</p>
+      <h1 id="age-title">¿Eres mayor de 18 años?</h1>
+      <p id="age-description">Este sitio contiene información sobre bebidas alcohólicas. Confirma tu edad para continuar.</p>
+      <div className="age-actions">
+        <button className="age-yes" onClick={acceptAge} autoFocus>Sí, soy mayor de edad</button>
+        <button className="age-no" onClick={() => setState("denied")}>No, todavía no</button>
+      </div>
+      <small>Al continuar, confirmas que tienes la edad legal para consumir alcohol en tu país.</small>
+    </section>
+  </main>;
+}
+
 function CookieConsent() {
   const [visible, setVisible] = useState(false);
 
@@ -162,5 +208,9 @@ function Contact() {
 }
 
 export default function App() {
+  const [ageVerified, setAgeVerified] = useState(() => hasVerifiedAge());
+
+  if (!ageVerified) return <AgeGate onVerified={() => setAgeVerified(true)} />;
+
   return <main><Header/><Hero/><About/><Beers/><Services/><Contact/><footer><div className="container footer-inner"><img src="/assets/logos pngs-VAGABUNDOS-04.png" alt="Cervecería Vagabundos"/><p>© {new Date().getFullYear()} Cervecería Vagabundos</p><p>Consume con responsabilidad. Solo para mayores de 18 años.</p></div></footer><CookieConsent/></main>;
 }

@@ -210,7 +210,10 @@ function Contact() {
 export default function App() {
   const [ageVerified, setAgeVerified] = useState(() => hasVerifiedAge());
 
-  if (!ageVerified) return <AgeGate onVerified={() => setAgeVerified(true)} />;
-
-  return <main><Header/><Hero/><About/><Beers/><Services/><Contact/><footer><div className="container footer-inner"><img src="/assets/logos pngs-VAGABUNDOS-04.png" alt="Cervecería Vagabundos"/><p>© {new Date().getFullYear()} Cervecería Vagabundos</p><p>Consume con responsabilidad. Solo para mayores de 18 años.</p></div></footer><CookieConsent/></main>;
+  return <>
+    {!ageVerified && <AgeGate onVerified={() => setAgeVerified(true)} />}
+    <main>
+      <Header/><Hero/><About/><Beers/><Services/><Contact/><footer><div className="container footer-inner"><img src="/assets/logos pngs-VAGABUNDOS-04.png" alt="Cervecería Vagabundos"/><p>© {new Date().getFullYear()} Cervecería Vagabundos</p><p>Consume con responsabilidad. Solo para mayores de 18 años.</p></div></footer><CookieConsent/>
+    </main>
+  </>;
 }

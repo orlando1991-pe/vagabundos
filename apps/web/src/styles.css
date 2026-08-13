@@ -111,6 +111,7 @@ h1 { max-width:720px; font-size:clamp(56px,7vw,96px); }
 .contact-links a:hover { background:rgba(23,15,11,.3); }
 .contact-links span { min-width:0; overflow-wrap:anywhere; font-weight:800; }
 .contact-links small { display:block; margin-bottom:4px; color:rgba(255,245,223,.65); font-size:10px; letter-spacing:.16em; text-transform:uppercase; }
+.contact-links .whatsapp-icon { width:24px; height:24px; object-fit:contain; }
 footer { padding:30px 0; background:#170f0b; }
 .footer-inner { display:flex; align-items:center; justify-content:space-between; gap:28px; }
 .footer-inner img { width:200px; }

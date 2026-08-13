@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ArrowRight, Cookie, Instagram, Mail, Menu, MessageCircle, Package, Phone, X } from "lucide-react";
+import { ArrowRight, Cookie, Instagram, Mail, Menu, MessageCircle, Package, X } from "lucide-react";
 import { beers, navItems, services, strengths } from "./data";
 
 const instagramUrl = "https://www.instagram.com/cerveceria.vagabundos/";
@@ -200,7 +200,7 @@ function Contact() {
   return <section id="contacto" className="contact-section"><div className="container contact-grid">
     <div><p className="eyebrow">Contáctanos</p><h2>Brindemos por lo que viene.</h2><p>Escríbenos para pedidos, disponibilidad, desarrollos especiales, catas o propuestas para tu negocio.</p></div>
     <div className="contact-links">
-      <a href={whatsappUrl} target="_blank" rel="noreferrer"><Phone/><span><small>WhatsApp</small>+51 960 254 978</span><ArrowRight/></a>
+      <a href={whatsappUrl} target="_blank" rel="noreferrer"><img className="whatsapp-icon" src="/whatsapp.svg" alt="" aria-hidden="true"/><span><small>WhatsApp</small>+51 960 254 978</span><ArrowRight/></a>
       <a href={`mailto:${email}`}><Mail/><span><small>Correo</small>{email}</span><ArrowRight/></a>
       <a href={instagramUrl} target="_blank" rel="noreferrer"><Instagram/><span><small>Instagram</small>@cerveceria.vagabundos</span><ArrowRight/></a>
     </div>
